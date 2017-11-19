@@ -1,0 +1,10 @@
+{
+    "pluralKeywords": [],
+    "singularKeywords": ["singular keyword"],
+    "pluralPrefix": [],
+    "singularPrefix": [],
+    "pluralSuffix": [],
+    "singularSuffix": ["with suffix"],
+    "requiresSuffix": true,
+    "requiresPrefix": false
+}
