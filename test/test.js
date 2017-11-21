@@ -258,6 +258,7 @@ describe('FCPXML', () => {
 
   it('xml should return correctly combine all xml components and write to file', () => {
     fcp.init();
+    fcp.setVoice('ava');
     let slides = [
       {
         title: 'test/titles-0.json',
@@ -267,14 +268,14 @@ describe('FCPXML', () => {
         clips: [
           {
             text: 'Some text...',
-            audio: '',
+            audio: 'Hello, here is some text for you to listen to',
             image: '',
             keyword: '',
             template: ''
           },
           {
             text: 'Some more text...',
-            audio: '',
+            audio: 'This is another line of text for you to listen to',
             image: 'sample-img.png',
             keyword: '',
             template: ''
@@ -288,19 +289,62 @@ describe('FCPXML', () => {
           },
           {
             text: 'Want to see another line?',
-            audio: '',
+            audio: 'Want to see another line?',
             image: '',
             keyword: '',
             template: ''
           }
         ]
       },
+      {
+        title: 'test/titles-0.json',
+        description: 'A test description.',
+        category: 0,
+        privacy: 'Public',
+        clips: [
+          {
+            text: 'Some text...',
+            audio: 'Hello, here is some text for you to listen to',
+            image: '',
+            keyword: '',
+            template: ''
+          },
+          {
+            text: 'Some more text...',
+            audio: 'This is another line of text for you to listen to',
+            image: 'sample-img.png',
+            keyword: '',
+            template: ''
+          },
+          {
+            text: 'A third line of text.',
+            audio: '',
+            image: '',
+            keyword: '',
+            template: ''
+          },
+          {
+            text: 'Want to see another line?',
+            audio: 'Want to see another line?',
+            image: '',
+            keyword: '',
+            template: ''
+          }
+        ]
+      }
     ];
     let result = fcp.xml(slides,'My Project');
     expect(result).to.be.a('string');
     expect(fcp.xmlFile).to.equal(result);
     expect(()=>{fcp.xml()}).to.throw();
     expect(fcp.write()).to.equal(true);
+  });
+
+  it('set output voice should correctly set audio voice', ()=> {
+    fcp.init();
+    expect(fcp.outputVoice).to.equal('karen');
+    fcp.setVoice('ava');
+    expect(fcp.outputVoice).to.equal('ava');
   });
 
 });

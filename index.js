@@ -4,7 +4,7 @@ const fs = require('fs');
 module.exports = {
   xmlFile: '',
   audioMetadata: [],
-  uploadMetadata: [],
+  uploadMetadata: {},
   slideTemplate: [
     {
       title: '',
@@ -22,6 +22,7 @@ module.exports = {
       ]
     }
   ],
+  outputVoice: 'karen',
   projectFormatID: 'r1',
   whitesID: 'r2',
   crossDissolveID: 'r3',
@@ -61,8 +62,14 @@ module.exports = {
     this.currentReferenceID = 28;
     this.currentTitleID = 1;
     this.currentProjectDuration = 0;
-    this.uploadMetadata = [];
+    this.uploadMetadata = {};
     this.audioMetadata = [];
+    this.outputVoice = 'karen';
+  },
+  setVoice: function(voice) {
+    if (voice && typeof voice === 'string') {
+      this.outputVoice = voice;
+    }
   },
   CrossDissolve: function(duration,offset) {
     return `<transition name="Cross Dissolve" offset="${offset}" duration="${duration}">
@@ -445,7 +452,7 @@ module.exports = {
       `;
     }
     if (audioText) {
-      this.addAudioMetadata(audioText,audioFile);
+      this.addAudioMetadata(audioText,audioFile,this.outputVoice);
       clip.xml +=
       `<asset id="${currentAudioReferenceText}" name="${audioFile}" src="${'file://' + this.videoAssetsPath + audioFile + '.aiff'}" start="0s" duration="${videoDurationText}" hasAudio="1" audioSources="1" audioChannels="1" audioRate="22050"/>
       `;
@@ -630,6 +637,9 @@ module.exports = {
       let projectXML = '';
       let title = this.generateTitle(videoSlides[p].title);
       let projectName = title.raw;
+      if (this.uploadMetadata[projectName]) {
+        continue;
+      }
       projectXML +=
       `<project name="${projectName}">
       <sequence duration="INSERT_PROJECT_DURATION_HERE" format="${this.projectFormatID}" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
@@ -716,7 +726,7 @@ module.exports = {
         "category": videoSlides[p].category,
         "privacy": videoSlides[p].privacy
       };
-      this.uploadMetadata.push(uploadObj);
+      this.uploadMetadata[projectName] = uploadObj;
     }
     return xml;
   },

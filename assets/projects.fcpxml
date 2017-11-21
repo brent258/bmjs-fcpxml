@@ -29,20 +29,21 @@
 <asset id="r25" name="Undeniable" uid="64880D3F07110BD686ED7F8650283C9C" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/Undeniable.mp3" start="0s" duration="8777088/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
 <asset id="r26" name="Venice_Beach" uid="C4DB24601F715BBCB1B98E8FEBBB99D9" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/Venice_Beach.mp3" start="0s" duration="7805952/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
 <asset id="r27" name="Where_I_am_From" uid="085466F06BDA75E28D0F767E193E0FDE" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/Where_I_am_From.mp3" start="0s" duration="9489024/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-<media id="r28" name="clip-r28">
-<sequence duration="5s" format="r1" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
+<asset id="r28" name="audio-r28" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/audio-r28.aiff" start="0s" duration="4s" hasAudio="1" audioSources="1" audioChannels="1" audioRate="22050"/>
+<media id="r29" name="clip-r29">
+<sequence duration="4s" format="r1" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
 <spine>
-<video name="Whites" offset="0s" ref="r2" duration="5s" start="3600s">
+<video name="Whites" offset="0s" ref="r2" duration="4s" start="3600s">
 <param name="Color" key="9999/10067/100/10068/2/100" value="5 (Bright White)"/>
+<clip name="audio-r28" lane="-1" offset="3600s" duration="4s" format="r16">
+<audio offset="0s" ref="r28" duration="4s" role="dialogue.dialogue-1" srcCh="1"/>
+</clip>
 <spine lane="1" offset="3600s">
-<transition name="Spin" offset="0s" duration="600/2400s">
-<filter-video ref="r12" name="Spin">
-<param name="Direction" key="1" value="0 (Automatic)"/>
-<param name="Angle" key="3" value="45"/>
-</filter-video>
+<transition name="Scale" offset="0s" duration="600/2400s">
+<filter-video ref="r10" name="Scale"/>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
-<title name="Some text..." offset="0s" ref="r5" duration="5s" start="3600s">
+<title name="Some text..." offset="0s" ref="r5" duration="4s" start="3600s">
 <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
 <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
 <param name="Alignment" key="9999/999166631/999166633/2/373" value="0 (Left) 1 (Middle)"/>
@@ -53,7 +54,7 @@
 <text-style font="Bodoni 72 Oldstyle" fontSize="150" fontFace="Book" fontColor="0 0 0 1" alignment="center"/>
 </text-style-def>
 </title>
-<transition name="Push" offset="11400/2400s" duration="600/2400s">
+<transition name="Push" offset="9000/2400s" duration="600/2400s">
 <filter-video ref="r8" name="Push"/>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
@@ -62,29 +63,27 @@
 </spine>
 </sequence>
 </media>
-<media id="r29" name="clip-r29">
-<sequence duration="5s" format="r1" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
+<asset id="r30" name="image-r30" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/sample-img.png" start="0s" duration="4s" hasVideo="1" format="r15"/>
+<media id="r31" name="clip-r31">
+<sequence duration="4s" format="r1" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
 <spine>
-<video name="Whites" offset="0s" ref="r2" duration="5s" start="3600s">
+<video name="Whites" offset="0s" ref="r2" duration="4s" start="3600s">
 <param name="Color" key="9999/10067/100/10068/2/100" value="5 (Bright White)"/>
 <spine lane="1" offset="3600s">
-<transition name="Rotate" offset="0s" duration="600/2400s">
-<filter-video ref="r9" name="Rotate"/>
+<transition name="Swap" offset="0s" duration="600/2400s">
+<filter-video ref="r13" name="Swap">
+<param name="Direction" key="3" value="1 (Right)"/>
+</filter-video>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
-<title name="Some more text..." offset="0s" ref="r5" duration="5s" start="3600s">
-<param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
-<param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
-<param name="Alignment" key="9999/999166631/999166633/2/373" value="0 (Left) 1 (Middle)"/>
-<text>
-<text-style ref="ts2">Some more text...</text-style>
-</text>
-<text-style-def id="ts2">
-<text-style font="Bodoni 72 Oldstyle" fontSize="150" fontFace="Book" fontColor="0 0 0 1" alignment="center"/>
-</text-style-def>
-</title>
-<transition name="Rotate" offset="11400/2400s" duration="600/2400s">
-<filter-video ref="r9" name="Rotate"/>
+<video name="image-r30" offset="0s" ref="r30" duration="4s" start="3600s">
+<adjust-crop mode="pan">
+<pan-rect top="14.2553" left="25.3344" bottom="0.74466" right="1.33232"/>
+<pan-rect top="0" left="0" bottom="0" right="0"/>
+</adjust-crop>
+</video>
+<transition name="Clothesline" offset="9000/2400s" duration="600/2400s">
+<filter-video ref="r6" name="Clothesline"/>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
 </spine>
@@ -92,17 +91,14 @@
 </spine>
 </sequence>
 </media>
-<media id="r30" name="clip-r30">
+<media id="r32" name="clip-r32">
 <sequence duration="5s" format="r1" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
 <spine>
 <video name="Whites" offset="0s" ref="r2" duration="5s" start="3600s">
 <param name="Color" key="9999/10067/100/10068/2/100" value="5 (Bright White)"/>
 <spine lane="1" offset="3600s">
-<transition name="Slide" offset="0s" duration="600/2400s">
-<filter-video ref="r11" name="Slide">
-<param name="Type" key="5" value="0 (Slide In)"/>
-<param name="Direction" key="4" value="2 (Right)"/>
-</filter-video>
+<transition name="Drop In" offset="0s" duration="600/2400s">
+<filter-video ref="r7" name="Drop In"/>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
 <title name="A third line of text." offset="0s" ref="r5" duration="5s" start="3600s">
@@ -110,16 +106,18 @@
 <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
 <param name="Alignment" key="9999/999166631/999166633/2/373" value="0 (Left) 1 (Middle)"/>
 <text>
-<text-style ref="ts3">A third line of text.</text-style>
+<text-style ref="ts2">A third line of text.</text-style>
 </text>
-<text-style-def id="ts3">
+<text-style-def id="ts2">
 <text-style font="Bodoni 72 Oldstyle" fontSize="150" fontFace="Book" fontColor="0 0 0 1" alignment="center"/>
 </text-style-def>
 </title>
-<transition name="Slide" offset="11400/2400s" duration="600/2400s">
-<filter-video ref="r11" name="Slide">
-<param name="Type" key="5" value="0 (Slide In)"/>
-<param name="Direction" key="4" value="2 (Right)"/>
+<transition name="Cross Dissolve" offset="11400/2400s" duration="600/2400s">
+<filter-video ref="r3" name="Cross Dissolve">
+<param name="Look" key="1" value="11 (Video)"/>
+<param name="Amount" key="2" value="50"/>
+<param name="Ease" key="50" value="2 (In &amp; Out)"/>
+<param name="Ease Amount" key="51" value="0"/>
 </filter-video>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
@@ -128,32 +126,32 @@
 </spine>
 </sequence>
 </media>
-<media id="r31" name="clip-r31">
-<sequence duration="5s" format="r1" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
+<media id="r33" name="clip-r33">
+<sequence duration="2s" format="r1" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
 <spine>
-<video name="Whites" offset="0s" ref="r2" duration="5s" start="3600s">
+<video name="Whites" offset="0s" ref="r2" duration="2s" start="3600s">
 <param name="Color" key="9999/10067/100/10068/2/100" value="5 (Bright White)"/>
 <spine lane="1" offset="3600s">
-<transition name="Slide" offset="0s" duration="600/2400s">
-<filter-video ref="r11" name="Slide">
-<param name="Type" key="5" value="0 (Slide In)"/>
-<param name="Direction" key="4" value="2 (Right)"/>
-</filter-video>
+<transition name="Rotate" offset="0s" duration="600/2400s">
+<filter-video ref="r9" name="Rotate"/>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
-<title name="Want to see another line?" offset="0s" ref="r5" duration="5s" start="3600s">
+<title name="Want to see another line?" offset="0s" ref="r5" duration="2s" start="3600s">
 <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
 <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
 <param name="Alignment" key="9999/999166631/999166633/2/373" value="0 (Left) 1 (Middle)"/>
 <text>
-<text-style ref="ts4">Want to see another line?</text-style>
+<text-style ref="ts3">Want to see another line?</text-style>
 </text>
-<text-style-def id="ts4">
+<text-style-def id="ts3">
 <text-style font="Bodoni 72 Oldstyle" fontSize="150" fontFace="Book" fontColor="0 0 0 1" alignment="center"/>
 </text-style-def>
 </title>
-<transition name="Drop In" offset="11400/2400s" duration="600/2400s">
-<filter-video ref="r7" name="Drop In"/>
+<transition name="Slide" offset="4200/2400s" duration="600/2400s">
+<filter-video ref="r11" name="Slide">
+<param name="Type" key="5" value="0 (Slide In)"/>
+<param name="Direction" key="4" value="2 (Right)"/>
+</filter-video>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
 </spine>
@@ -165,16 +163,16 @@
 <library>
 <event name="My Project">
 <project name="Singular Keyword">
-<sequence duration="20s" format="r1" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
+<sequence duration="15s" format="r1" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
 <spine>
-<ref-clip name="clip-r28" offset="0s" ref="r28" duration="5s">
-<asset-clip name="I_Love_You" lane="-1" offset="0s" ref="r21" duration="20s" audioRole="music" format="r16">
+<ref-clip name="clip-r29" offset="0s" ref="r29" duration="4s">
+<asset-clip name="Reasons_To_Smile" lane="-1" offset="0s" ref="r23" duration="15s" audioRole="music" format="r16">
 <adjust-volume amount="-12dB"/>
 </asset-clip>
 </ref-clip>
-<ref-clip name="clip-r29" offset="5s" ref="r29" duration="5s"/>
-<ref-clip name="clip-r30" offset="10s" ref="r30" duration="5s"/>
-<ref-clip name="clip-r31" offset="15s" ref="r31" duration="5s"/>
+<ref-clip name="clip-r31" offset="4s" ref="r31" duration="4s"/>
+<ref-clip name="clip-r32" offset="8s" ref="r32" duration="5s"/>
+<ref-clip name="clip-r33" offset="13s" ref="r33" duration="2s"/>
 </spine>
 </sequence>
 </project>
