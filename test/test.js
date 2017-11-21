@@ -299,7 +299,7 @@ describe('FCPXML', () => {
     let result = fcp.xml(slides,'My Project');
     expect(result).to.be.a('string');
     expect(fcp.xmlFile).to.equal(result);
-    expect(()=>{fcpxml()}).to.throw();
+    expect(()=>{fcp.xml()}).to.throw();
     expect(fcp.write()).to.equal(true);
   });
 
