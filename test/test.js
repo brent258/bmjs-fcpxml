@@ -17,6 +17,7 @@ describe('FCPXML', () => {
     expect(fcp.slideTemplate[0]).to.have.property('category');
     expect(fcp.slideTemplate[0]).to.have.property('privacy');
     expect(fcp.slideTemplate[0]).to.have.property('clips');
+    expect(fcp.slideTemplate[0]).to.have.property('keywords');
     expect(fcp.slideTemplate[0].clips[0]).to.have.property('text');
     expect(fcp.slideTemplate[0].clips[0]).to.have.property('audio');
     expect(fcp.slideTemplate[0].clips[0]).to.have.property('image');

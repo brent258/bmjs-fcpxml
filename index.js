@@ -11,6 +11,7 @@ module.exports = {
       description: '',
       category: 0,
       privacy: '',
+      keywords: '',
       clips: [
         {
           text: '',

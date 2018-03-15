@@ -18,18 +18,18 @@
 <format id="r16" name="FFVideoFormatRateUndefined"/>
 <effect id="r13" name="Swap" uid="FxPlug:ED30AF7F-E5F2-4E1D-9ED8-74F6F055887F"/>
 <effect id="r14" name="Swing" uid=".../Transitions.localized/Movements.localized/Swing.localized/Swing.motr"/>
-<asset id="r17" name="Bright_Future" uid="D4B213A2F40498A916009A4E8667A3B7" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/Bright_Future.mp3" start="0s" duration="7717248/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-<asset id="r18" name="Bring_it_up" uid="96A15E699FA10811C40F093946DF3F52" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/Bring_it_up.mp3" start="0s" duration="7853184/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-<asset id="r19" name="Don_t_Look" uid="BD80E52FB35E00EBA743416B86CD602B" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/Don_t_Look.mp3" start="0s" duration="11718144/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-<asset id="r20" name="Hollywood_High" uid="50F80E752E96DABCDC93AA2759893FBA" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/Hollywood_High.mp3" start="0s" duration="8574336/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-<asset id="r21" name="I_Love_You" uid="D51891EBABC0F1891335E1DDF0E12312" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/I_Love_You.mp3" start="0s" duration="8756352/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-<asset id="r22" name="Over_Time" uid="540A25F6BF679E43DFFBA148EFFB5C2A" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/Over_Time.mp3" start="0s" duration="8021376/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-<asset id="r23" name="Reasons_to_Smile" uid="8810E3402684878ECE8B03C292F5A129" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/Reasons_to_Smile.mp3" start="0s" duration="8464896/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-<asset id="r24" name="Sunday_Plans" uid="D70E13F2EB1C1D25C5981C5ACC634156" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/Sunday_Plans.mp3" start="0s" duration="7498368/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-<asset id="r25" name="Undeniable" uid="64880D3F07110BD686ED7F8650283C9C" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/Undeniable.mp3" start="0s" duration="8777088/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-<asset id="r26" name="Venice_Beach" uid="C4DB24601F715BBCB1B98E8FEBBB99D9" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/Venice_Beach.mp3" start="0s" duration="7805952/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-<asset id="r27" name="Where_I_am_From" uid="085466F06BDA75E28D0F767E193E0FDE" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/Where_I_am_From.mp3" start="0s" duration="9489024/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-<asset id="r28" name="audio-r28" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/audio-r28.aiff" start="0s" duration="4s" hasAudio="1" audioSources="1" audioChannels="1" audioRate="22050"/>
+<asset id="r17" name="Bright_Future" uid="D4B213A2F40498A916009A4E8667A3B7" src="file:///Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/Bright_Future.mp3" start="0s" duration="7717248/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+<asset id="r18" name="Bring_it_up" uid="96A15E699FA10811C40F093946DF3F52" src="file:///Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/Bring_it_up.mp3" start="0s" duration="7853184/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+<asset id="r19" name="Don_t_Look" uid="BD80E52FB35E00EBA743416B86CD602B" src="file:///Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/Don_t_Look.mp3" start="0s" duration="11718144/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+<asset id="r20" name="Hollywood_High" uid="50F80E752E96DABCDC93AA2759893FBA" src="file:///Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/Hollywood_High.mp3" start="0s" duration="8574336/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+<asset id="r21" name="I_Love_You" uid="D51891EBABC0F1891335E1DDF0E12312" src="file:///Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/I_Love_You.mp3" start="0s" duration="8756352/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+<asset id="r22" name="Over_Time" uid="540A25F6BF679E43DFFBA148EFFB5C2A" src="file:///Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/Over_Time.mp3" start="0s" duration="8021376/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+<asset id="r23" name="Reasons_to_Smile" uid="8810E3402684878ECE8B03C292F5A129" src="file:///Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/Reasons_to_Smile.mp3" start="0s" duration="8464896/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+<asset id="r24" name="Sunday_Plans" uid="D70E13F2EB1C1D25C5981C5ACC634156" src="file:///Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/Sunday_Plans.mp3" start="0s" duration="7498368/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+<asset id="r25" name="Undeniable" uid="64880D3F07110BD686ED7F8650283C9C" src="file:///Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/Undeniable.mp3" start="0s" duration="8777088/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+<asset id="r26" name="Venice_Beach" uid="C4DB24601F715BBCB1B98E8FEBBB99D9" src="file:///Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/Venice_Beach.mp3" start="0s" duration="7805952/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+<asset id="r27" name="Where_I_am_From" uid="085466F06BDA75E28D0F767E193E0FDE" src="file:///Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/Where_I_am_From.mp3" start="0s" duration="9489024/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+<asset id="r28" name="audio-r28" src="file:///Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/audio-r28.aiff" start="0s" duration="4s" hasAudio="1" audioSources="1" audioChannels="1" audioRate="22050"/>
 <media id="r29" name="clip-r29">
 <sequence duration="4s" format="r1" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
 <spine>
@@ -39,8 +39,8 @@
 <audio offset="0s" ref="r28" duration="4s" role="dialogue.dialogue-1" srcCh="1"/>
 </clip>
 <spine lane="1" offset="3600s">
-<transition name="Scale" offset="0s" duration="600/2400s">
-<filter-video ref="r10" name="Scale"/>
+<transition name="Push" offset="0s" duration="600/2400s">
+<filter-video ref="r8" name="Push"/>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
 <title name="Some text..." offset="0s" ref="r5" duration="4s" start="3600s">
@@ -54,8 +54,13 @@
 <text-style font="Bodoni 72 Oldstyle" fontSize="150" fontFace="Book" fontColor="0 0 0 1" alignment="center"/>
 </text-style-def>
 </title>
-<transition name="Push" offset="9000/2400s" duration="600/2400s">
-<filter-video ref="r8" name="Push"/>
+<transition name="Cross Dissolve" offset="9000/2400s" duration="600/2400s">
+<filter-video ref="r3" name="Cross Dissolve">
+<param name="Look" key="1" value="11 (Video)"/>
+<param name="Amount" key="2" value="50"/>
+<param name="Ease" key="50" value="2 (In &amp; Out)"/>
+<param name="Ease Amount" key="51" value="0"/>
+</filter-video>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
 </spine>
@@ -63,27 +68,25 @@
 </spine>
 </sequence>
 </media>
-<asset id="r30" name="image-r30" src="file:///Users/brentmccoy/Apps/node_modules/bmjs-fcpxml/assets/sample-img.png" start="0s" duration="4s" hasVideo="1" format="r15"/>
+<asset id="r30" name="image-r30" src="file:///Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/sample-img.png" start="0s" duration="4s" hasVideo="1" format="r15"/>
 <media id="r31" name="clip-r31">
 <sequence duration="4s" format="r1" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
 <spine>
 <video name="Whites" offset="0s" ref="r2" duration="4s" start="3600s">
 <param name="Color" key="9999/10067/100/10068/2/100" value="5 (Bright White)"/>
 <spine lane="1" offset="3600s">
-<transition name="Swap" offset="0s" duration="600/2400s">
-<filter-video ref="r13" name="Swap">
-<param name="Direction" key="3" value="1 (Right)"/>
-</filter-video>
+<transition name="Drop In" offset="0s" duration="600/2400s">
+<filter-video ref="r7" name="Drop In"/>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
 <video name="image-r30" offset="0s" ref="r30" duration="4s" start="3600s">
 <adjust-crop mode="pan">
-<pan-rect top="14.2553" left="25.3344" bottom="0.74466" right="1.33232"/>
 <pan-rect top="0" left="0" bottom="0" right="0"/>
+<pan-rect top="0.62071" left="25.1294" bottom="14.3793" right="1.53731"/>
 </adjust-crop>
 </video>
-<transition name="Clothesline" offset="9000/2400s" duration="600/2400s">
-<filter-video ref="r6" name="Clothesline"/>
+<transition name="Rotate" offset="9000/2400s" duration="600/2400s">
+<filter-video ref="r9" name="Rotate"/>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
 </spine>
@@ -112,13 +115,8 @@
 <text-style font="Bodoni 72 Oldstyle" fontSize="150" fontFace="Book" fontColor="0 0 0 1" alignment="center"/>
 </text-style-def>
 </title>
-<transition name="Cross Dissolve" offset="11400/2400s" duration="600/2400s">
-<filter-video ref="r3" name="Cross Dissolve">
-<param name="Look" key="1" value="11 (Video)"/>
-<param name="Amount" key="2" value="50"/>
-<param name="Ease" key="50" value="2 (In &amp; Out)"/>
-<param name="Ease Amount" key="51" value="0"/>
-</filter-video>
+<transition name="Rotate" offset="11400/2400s" duration="600/2400s">
+<filter-video ref="r9" name="Rotate"/>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
 </spine>
@@ -132,8 +130,13 @@
 <video name="Whites" offset="0s" ref="r2" duration="2s" start="3600s">
 <param name="Color" key="9999/10067/100/10068/2/100" value="5 (Bright White)"/>
 <spine lane="1" offset="3600s">
-<transition name="Rotate" offset="0s" duration="600/2400s">
-<filter-video ref="r9" name="Rotate"/>
+<transition name="Cross Dissolve" offset="0s" duration="600/2400s">
+<filter-video ref="r3" name="Cross Dissolve">
+<param name="Look" key="1" value="11 (Video)"/>
+<param name="Amount" key="2" value="50"/>
+<param name="Ease" key="50" value="2 (In &amp; Out)"/>
+<param name="Ease Amount" key="51" value="0"/>
+</filter-video>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
 <title name="Want to see another line?" offset="0s" ref="r5" duration="2s" start="3600s">
