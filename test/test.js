@@ -246,8 +246,8 @@ describe('FCPXML', () => {
           {
             text: 'Some text...',
             audio: 'Here is some text.',
-            image: null,
-            keyword: '',
+            image: {filename: 'sample-img.png'},
+            keyword: 'dog',
             template: ''
           },
           {
@@ -256,7 +256,14 @@ describe('FCPXML', () => {
             image: null,
             keyword: '',
             template: ''
-          }
+          },
+          {
+            text: '',
+            audio: '',
+            image: {filename: 'sample-img.png'},
+            keyword: 'dog',
+            template: ''
+          },
         ]
       }
     ];
