@@ -2,6 +2,7 @@ const rand = require('bmjs-random');
 const fs = require('fs');
 
 module.exports = {
+
   xmlFile: '',
   audioMetadata: [],
   uploadMetadata: {},
@@ -9,14 +10,14 @@ module.exports = {
     {
       title: '',
       description: '',
-      category: 0,
+      category: '0',
       privacy: '',
-      keywords: '',
+      keywords: [],
       clips: [
         {
           text: '',
           audio: '',
-          image: '',
+          image: null,
           keyword: '',
           template: ''
         }
@@ -52,26 +53,53 @@ module.exports = {
   music10: 'r26',
   music11: 'r27',
   transitionDuration: '600/2400s',
-  videoAssetsPath: __dirname + '/assets/',
+  projectPath: '',
+  imagesPath: '',
   startReferenceID: 28,
   currentReferenceID: 28,
   startTitleID: 1,
   currentTitleID: 1,
   currentProjectDuration: 0,
-  init: function() {
+
+  init: function(project,images,voice) {
     this.xmlFile = '';
     this.currentReferenceID = 28;
     this.currentTitleID = 1;
     this.currentProjectDuration = 0;
     this.uploadMetadata = {};
     this.audioMetadata = [];
-    this.outputVoice = 'karen';
+    this.setVoice(voice);
+    this.setProjectPath(project);
+    this.setImagesPath(images);
   },
+
+  setProjectPath: function(path) {
+    if (path && typeof path === 'string') {
+      this.projectPath = path;
+    }
+    else {
+      this.projectPath = __dirname + '/assets/';
+    }
+  },
+
+  setImagesPath: function(path) {
+    if (path && typeof path === 'string') {
+      this.imagesPath = path;
+    }
+    else {
+      this.imagesPath = __dirname + '/assets/';
+    }
+  },
+
   setVoice: function(voice) {
     if (voice && typeof voice === 'string') {
       this.outputVoice = voice;
     }
+    else {
+      this.outputVoice = 'karen';
+    }
   },
+
   CrossDissolve: function(duration,offset) {
     return `<transition name="Cross Dissolve" offset="${offset}" duration="${duration}">
     <filter-video ref="${this.crossDissolveID}" name="Cross Dissolve">
@@ -84,6 +112,7 @@ module.exports = {
     </transition>
     `;
   },
+
   Clothesline: function(duration,offset) {
     return `<transition name="Clothesline" offset="${offset}" duration="${duration}">
     <filter-video ref="${this.clotheslineID}" name="Clothesline"/>
@@ -91,6 +120,7 @@ module.exports = {
     </transition>
     `;
   },
+
   DropIn: function(duration,offset) {
     return `<transition name="Drop In" offset="${offset}" duration="${duration}">
     <filter-video ref="${this.dropInID}" name="Drop In"/>
@@ -98,6 +128,7 @@ module.exports = {
     </transition>
     `;
   },
+
   Push: function(duration,offset) {
     return `<transition name="Push" offset="${offset}" duration="${duration}">
     <filter-video ref="${this.pushID}" name="Push"/>
@@ -105,6 +136,7 @@ module.exports = {
     </transition>
     `;
   },
+
   Rotate: function(duration,offset) {
     return `<transition name="Rotate" offset="${offset}" duration="${duration}">
     <filter-video ref="${this.rotateID}" name="Rotate"/>
@@ -112,6 +144,7 @@ module.exports = {
     </transition>
     `;
   },
+
   Scale: function(duration,offset) {
     return `<transition name="Scale" offset="${offset}" duration="${duration}">
     <filter-video ref="${this.scaleID}" name="Scale"/>
@@ -119,6 +152,7 @@ module.exports = {
     </transition>
     `;
   },
+
   Slide: function(duration,offset) {
     return `<transition name="Slide" offset="${offset}" duration="${duration}">
     <filter-video ref="${this.slideID}" name="Slide">
@@ -129,6 +163,7 @@ module.exports = {
     </transition>
     `;
   },
+
   Spin: function(duration,offset) {
     return `<transition name="Spin" offset="${offset}" duration="${duration}">
     <filter-video ref="${this.spinID}" name="Spin">
@@ -139,6 +174,7 @@ module.exports = {
     </transition>
     `;
   },
+
   Swap: function(duration,offset) {
     return `<transition name="Swap" offset="${offset}" duration="${duration}">
     <filter-video ref="${this.swapID}" name="Swap">
@@ -148,6 +184,7 @@ module.exports = {
     </transition>
     `;
   },
+
   Swing: function(duration,offset) {
     return `<transition name="Swing" offset="${offset}" duration="${duration}">
     <filter-video ref="${this.swingID}" name="Swing"/>
@@ -155,6 +192,7 @@ module.exports = {
     </transition>
     `;
   },
+
   InBottomLeft: function(imageName,imageID,duration,offset) {
     return `<video name="${imageName}" offset="${offset}" ref="${imageID}" duration="${duration}" start="3600s">
     <adjust-crop mode="pan">
@@ -164,6 +202,7 @@ module.exports = {
     </video>
     `;
   },
+
   InBottomRight: function(imageName,imageID,duration,offset) {
     return `<video name="${imageName}" offset="${offset}" ref="${imageID}" duration="${duration}" start="3600s">
     <adjust-crop mode="pan">
@@ -173,6 +212,7 @@ module.exports = {
     </video>
     `;
   },
+
   InCenter: function(imageName,imageID,duration,offset) {
     return `<video name="${imageName}" offset="${offset}" ref="${imageID}" duration="${duration}" start="3600s">
     <adjust-crop mode="pan">
@@ -182,6 +222,7 @@ module.exports = {
     </video>
     `;
   },
+
   InTopLeft: function(imageName,imageID,duration,offset) {
     return `<video name="${imageName}" offset="${offset}" ref="${imageID}" duration="${duration}" start="3600s">
     <adjust-crop mode="pan">
@@ -191,6 +232,7 @@ module.exports = {
     </video>
     `;
   },
+
   InTopRight: function(imageName,imageID,duration,offset) {
     return `<video name="${imageName}" offset="${offset}" ref="${imageID}" duration="${duration}" start="3600s">
     <adjust-crop mode="pan">
@@ -200,6 +242,7 @@ module.exports = {
     </video>
     `;
   },
+
   OutBottomLeft: function(imageName,imageID,duration,offset) {
     return `<video name="${imageName}" offset="${offset}" ref="${imageID}" duration="${duration}" start="3600s">
     <adjust-crop mode="pan">
@@ -209,6 +252,7 @@ module.exports = {
     </video>
     `;
   },
+
   OutBottomRight: function(imageName,imageID,duration,offset) {
     return `<video name="${imageName}" offset="${offset}" ref="${imageID}" duration="${duration}" start="3600s">
     <adjust-crop mode="pan">
@@ -218,6 +262,7 @@ module.exports = {
     </video>
     `;
   },
+
   OutCenter: function(imageName,imageID,duration,offset) {
     return `<video name="${imageName}" offset="${offset}" ref="${imageID}" duration="${duration}" start="3600s">
     <adjust-crop mode="pan">
@@ -227,6 +272,7 @@ module.exports = {
     </video>
     `;
   },
+
   OutTopLeft: function(imageName,imageID,duration,offset) {
     return `<video name="${imageName}" offset="${offset}" ref="${imageID}" duration="${duration}" start="3600s">
     <adjust-crop mode="pan">
@@ -236,6 +282,7 @@ module.exports = {
     </video>
     `;
   },
+
   OutTopRight: function(imageName,imageID,duration,offset) {
     return `<video name="${imageName}" offset="${offset}" ref="${imageID}" duration="${duration}" start="3600s">
     <adjust-crop mode="pan">
@@ -245,6 +292,7 @@ module.exports = {
     </video>
     `;
   },
+
   FullTitle: function(text,currentTitleID,duration,offset) {
     return `<title name="${text}" offset="${offset}" ref="${this.basicTitleID}" duration="${duration}" start="3600s">
     <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
@@ -259,6 +307,7 @@ module.exports = {
     </title>
     `;
   },
+
   LowerThirdTitle: function(text,currentTitleID,duration,offset) {
     return `<title name="${text}" offset="${offset}" ref="${this.basicTitleID}" duration="${duration}" start="3600s">
     <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
@@ -274,6 +323,7 @@ module.exports = {
     </title>
     `;
   },
+
   LowerThirdBackground: function(duration,offset) {
     return `<video name="Whites" offset="${offset}" ref="${this.whitesID}" duration="${duration}" start="3600s">
     <param name="Color" key="9999/10067/100/10068/2/100" value="5 (Bright White)"/>
@@ -284,6 +334,7 @@ module.exports = {
     </video>
     `;
   },
+
   randomVideoTransition: function(duration,offset) {
     return rand(
       this.CrossDissolve(duration,offset),
@@ -298,6 +349,7 @@ module.exports = {
       this.Swing(duration,offset)
     );
   },
+
   randomTitleTransition: function(duration,offset) {
     return rand(
       this.CrossDissolve(duration,offset),
@@ -309,6 +361,7 @@ module.exports = {
       this.Spin(duration,offset)
     );
   },
+
   randomImagePan: function(imageName,imageID,duration,offset) {
     return rand(
       this.InBottomLeft(imageName,imageID,duration,offset),
@@ -323,6 +376,7 @@ module.exports = {
       this.OutCenter(imageName,imageID,duration,offset)
     );
   },
+
   randomMusicTrack: function() {
     return rand(
       {name: "Bright_Future", id: "r17"},
@@ -338,6 +392,7 @@ module.exports = {
       {name: "Where_I_Am_From", id: "r27"}
     );
   },
+
   assetsXML: function() {
     return `<format id="${this.projectFormatID}" name="FFVideoFormat720p24" frameDuration="100/2400s" width="1280" height="720"/>
     <effect id="${this.whitesID}" name="Whites" uid=".../Generators.localized/Solids.localized/Whites.localized/Whites.motn"/>
@@ -355,19 +410,20 @@ module.exports = {
     <format id="${this.audioFormatID}" name="FFVideoFormatRateUndefined"/>
     <effect id="${this.swapID}" name="Swap" uid="FxPlug:ED30AF7F-E5F2-4E1D-9ED8-74F6F055887F"/>
     <effect id="${this.swingID}" name="Swing" uid=".../Transitions.localized/Movements.localized/Swing.localized/Swing.motr"/>
-    <asset id="${this.music1}" name="Bright_Future" uid="D4B213A2F40498A916009A4E8667A3B7" src="${"file://" + this.videoAssetsPath + "Bright_Future.mp3"}" start="0s" duration="7717248/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${this.music2}" name="Bring_it_up" uid="96A15E699FA10811C40F093946DF3F52" src="${"file://" + this.videoAssetsPath + "Bring_it_up.mp3"}" start="0s" duration="7853184/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${this.music3}" name="Don_t_Look" uid="BD80E52FB35E00EBA743416B86CD602B" src="${"file://" + this.videoAssetsPath + "Don_t_Look.mp3"}" start="0s" duration="11718144/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${this.music4}" name="Hollywood_High" uid="50F80E752E96DABCDC93AA2759893FBA" src="${"file://" + this.videoAssetsPath + "Hollywood_High.mp3"}" start="0s" duration="8574336/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${this.music5}" name="I_Love_You" uid="D51891EBABC0F1891335E1DDF0E12312" src="${"file://" + this.videoAssetsPath + "I_Love_You.mp3"}" start="0s" duration="8756352/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${this.music6}" name="Over_Time" uid="540A25F6BF679E43DFFBA148EFFB5C2A" src="${"file://" + this.videoAssetsPath + "Over_Time.mp3"}" start="0s" duration="8021376/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${this.music7}" name="Reasons_to_Smile" uid="8810E3402684878ECE8B03C292F5A129" src="${"file://" + this.videoAssetsPath + "Reasons_to_Smile.mp3"}" start="0s" duration="8464896/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${this.music8}" name="Sunday_Plans" uid="D70E13F2EB1C1D25C5981C5ACC634156" src="${"file://" + this.videoAssetsPath + "Sunday_Plans.mp3"}" start="0s" duration="7498368/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${this.music9}" name="Undeniable" uid="64880D3F07110BD686ED7F8650283C9C" src="${"file://" + this.videoAssetsPath + "Undeniable.mp3"}" start="0s" duration="8777088/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${this.music10}" name="Venice_Beach" uid="C4DB24601F715BBCB1B98E8FEBBB99D9" src="${"file://" + this.videoAssetsPath + "Venice_Beach.mp3"}" start="0s" duration="7805952/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${this.music11}" name="Where_I_am_From" uid="085466F06BDA75E28D0F767E193E0FDE" src="${"file://" + this.videoAssetsPath + "Where_I_am_From.mp3"}" start="0s" duration="9489024/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${this.music1}" name="Bright_Future" uid="D4B213A2F40498A916009A4E8667A3B7" src="${"file://" + this.projectPath + "Bright_Future.mp3"}" start="0s" duration="7717248/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${this.music2}" name="Bring_it_up" uid="96A15E699FA10811C40F093946DF3F52" src="${"file://" + this.projectPath + "Bring_it_up.mp3"}" start="0s" duration="7853184/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${this.music3}" name="Don_t_Look" uid="BD80E52FB35E00EBA743416B86CD602B" src="${"file://" + this.projectPath + "Don_t_Look.mp3"}" start="0s" duration="11718144/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${this.music4}" name="Hollywood_High" uid="50F80E752E96DABCDC93AA2759893FBA" src="${"file://" + this.projectPath + "Hollywood_High.mp3"}" start="0s" duration="8574336/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${this.music5}" name="I_Love_You" uid="D51891EBABC0F1891335E1DDF0E12312" src="${"file://" + this.projectPath + "I_Love_You.mp3"}" start="0s" duration="8756352/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${this.music6}" name="Over_Time" uid="540A25F6BF679E43DFFBA148EFFB5C2A" src="${"file://" + this.projectPath + "Over_Time.mp3"}" start="0s" duration="8021376/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${this.music7}" name="Reasons_to_Smile" uid="8810E3402684878ECE8B03C292F5A129" src="${"file://" + this.projectPath + "Reasons_to_Smile.mp3"}" start="0s" duration="8464896/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${this.music8}" name="Sunday_Plans" uid="D70E13F2EB1C1D25C5981C5ACC634156" src="${"file://" + this.projectPath + "Sunday_Plans.mp3"}" start="0s" duration="7498368/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${this.music9}" name="Undeniable" uid="64880D3F07110BD686ED7F8650283C9C" src="${"file://" + this.projectPath + "Undeniable.mp3"}" start="0s" duration="8777088/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${this.music10}" name="Venice_Beach" uid="C4DB24601F715BBCB1B98E8FEBBB99D9" src="${"file://" + this.projectPath + "Venice_Beach.mp3"}" start="0s" duration="7805952/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${this.music11}" name="Where_I_am_From" uid="085466F06BDA75E28D0F767E193E0FDE" src="${"file://" + this.projectPath + "Where_I_am_From.mp3"}" start="0s" duration="9489024/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
     `
   },
+
   openingTags: function() {
     return `<?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE fcpxml>
@@ -375,12 +431,14 @@ module.exports = {
     <resources>
     `;
   },
+
   middleTags: function(name) {
     return `</resources>
     <library>
     <event name="${name || 'Projects'}">
     `;
   },
+
   closingTags: function(name) {
     return `</event>
     <smart-collection name="${name || 'Projects'}" match="all">
@@ -403,31 +461,34 @@ module.exports = {
     </fcpxml>
     `;
   },
-  makeClip: function(videoImage,audioText,videoText,videoDuration,videoOffset) {
+
+  makeClip: function(clipObj,videoDuration,videoOffset) {
     if (videoDuration === undefined || videoOffset === undefined || typeof videoDuration !== 'number' || typeof videoOffset !== 'number') {
-      throw Error('Unable to generate video slide without duration.');
+      throw new Error('Unable to generate video slide without duration.');
     }
     let videoDurationText = videoDuration + 's';
     let videoOffsetText = videoOffset + 's';
     let transitionOffsetText = this.calculateTransitionStartFromLength(videoDuration,this.transitionDuration);
-    let currentImageReferenceText, currentAudioReferenceText, currentClipReferenceText, currentTitleReferenceText, imageFile, audioFile, clipFile;
-    if (videoImage && audioText) {
+    let currentImageReferenceText, currentAudioReferenceText, currentClipReferenceText, currentTitleReferenceText, imageFile, audioFile, clipFile, imagePath;
+    if (clipObj.image && clipObj.audio) {
       currentImageReferenceText = 'r' + this.currentReferenceID;
       currentAudioReferenceText = 'r' + (this.currentReferenceID + 1);
       currentClipReferenceText = 'r' + (this.currentReferenceID + 2);
       imageFile = 'image-' + currentImageReferenceText;
       audioFile = 'audio-' + currentAudioReferenceText;
       clipFile = 'clip-' + currentClipReferenceText;
+      imagePath = clipObj.keyword + '/' + clipObj.filename;
       this.currentReferenceID += 3;
     }
-    else if (videoImage) {
+    else if (clipObj.image) {
       currentImageReferenceText = 'r' + this.currentReferenceID;
       currentClipReferenceText = 'r' + (this.currentReferenceID + 1);
       imageFile = 'image-' + currentImageReferenceText;
       clipFile = 'clip-' + currentClipReferenceText;
+      imagePath = clipObj.keyword + '/' + clipObj.filename;
       this.currentReferenceID += 2;
     }
-    else if (audioText) {
+    else if (clipObj.audio) {
       currentAudioReferenceText = 'r' + this.currentReferenceID;
       currentClipReferenceText = 'r' + (this.currentReferenceID + 1);
       audioFile = 'audio-' + currentAudioReferenceText;
@@ -439,7 +500,7 @@ module.exports = {
       clipFile = 'clip-' + currentClipReferenceText;
       this.currentReferenceID += 1;
     }
-    if (videoText) {
+    if (clipObj.text) {
       currentTitleReferenceText = 'ts' + this.currentTitleID;
       this.currentTitleID += 1;
     }
@@ -447,15 +508,15 @@ module.exports = {
       xml: '',
       reference: currentClipReferenceText
     };
-    if (videoImage) {
+    if (clipObj.image) {
       clip.xml +=
-      `<asset id="${currentImageReferenceText}" name="${imageFile}" src="${'file://' + this.videoAssetsPath + videoImage}" start="0s" duration="${videoDurationText}" hasVideo="1" format="${this.imageFormatID}"/>
+      `<asset id="${currentImageReferenceText}" name="${imageFile}" src="${'file://' + this.imagesPath + imagePath}" start="0s" duration="${videoDurationText}" hasVideo="1" format="${this.imageFormatID}"/>
       `;
     }
-    if (audioText) {
-      this.addAudioMetadata(audioText,audioFile,this.outputVoice);
+    if (clipObj.audio) {
+      this.addAudioMetadata(clipObj.audio,audioFile,this.outputVoice);
       clip.xml +=
-      `<asset id="${currentAudioReferenceText}" name="${audioFile}" src="${'file://' + this.videoAssetsPath + audioFile + '.aiff'}" start="0s" duration="${videoDurationText}" hasAudio="1" audioSources="1" audioChannels="1" audioRate="22050"/>
+      `<asset id="${currentAudioReferenceText}" name="${audioFile}" src="${'file://' + this.projectPath + audioFile + '.aiff'}" start="0s" duration="${videoDurationText}" hasAudio="1" audioSources="1" audioChannels="1" audioRate="22050"/>
       `;
     }
     clip.xml +=
@@ -465,7 +526,7 @@ module.exports = {
     <video name="Whites" offset="0s" ref="${this.whitesID}" duration="${videoDurationText}" start="3600s">
     <param name="Color" key="9999/10067/100/10068/2/100" value="5 (Bright White)"/>
     `;
-    if (audioText) {
+    if (clipObj.audio) {
       clip.xml +=
       `<clip name="${audioFile}" lane="-1" offset="3600s" duration="${videoDurationText}" format="${this.audioFormatID}">
       <audio offset="0s" ref="${currentAudioReferenceText}" duration="${videoDurationText}" role="dialogue.dialogue-1" srcCh="1"/>
@@ -475,20 +536,20 @@ module.exports = {
     clip.xml +=
     `<spine lane="1" offset="3600s">
     `;
-    if (videoImage) {
+    if (clipObj.image) {
       clip.xml += this.randomVideoTransition(this.transitionDuration,videoOffsetText);
       clip.xml += this.randomImagePan(imageFile,currentImageReferenceText,videoDurationText,videoOffsetText);
       clip.xml += this.randomVideoTransition(this.transitionDuration,transitionOffsetText);
     }
-    else if (videoText) {
+    else if (clipObj.text) {
       clip.xml += this.randomTitleTransition(this.transitionDuration,videoOffsetText);
-      clip.xml += this.FullTitle(videoText,currentTitleReferenceText,videoDurationText,videoOffsetText);
+      clip.xml += this.FullTitle(clipObj.text,currentTitleReferenceText,videoDurationText,videoOffsetText);
       clip.xml += this.randomTitleTransition(this.transitionDuration,transitionOffsetText);
     }
     clip.xml +=
     `</spine>
     `;
-    if (videoImage && videoText) {
+    if (clipObj.image && clipObj.text) {
       clip.xml +=
       `<spine lane="2" offset="3600s">
       `;
@@ -500,7 +561,7 @@ module.exports = {
       <spine lane="3" offset="3600s">
       `;
       clip.xml += this.Slide('1200/2400s',videoOffsetText);
-      clip.xml += this.LowerThirdTitle(videoText,currentTitleReferenceText,videoDurationText,videoOffsetText);
+      clip.xml += this.LowerThirdTitle(clipObj.text,currentTitleReferenceText,videoDurationText,videoOffsetText);
       clip.xml += this.CrossDissolve(this.transitionDuration,transitionOffsetText);
       clip.xml +=
       `</spine>
@@ -515,9 +576,10 @@ module.exports = {
     clip.xml = clip.xml.replace(/\n\s*/g,'\n');
     return clip;
   },
+
   calculateVideoLengthFromText: function(videoText) {
     if (!videoText || typeof videoText !== 'string') {
-      throw Error('Text must be entered to calculate video length');
+      throw new Error('Text must be entered to calculate video length');
     }
     if (!videoText.includes(' ')) {
       return 5;
@@ -525,9 +587,10 @@ module.exports = {
     let words = videoText.split(' ').length;
     return Math.floor(words / 3) + 1;
   },
+
   calculateTransitionStartFromLength: function(videoLength,transitionLength) {
     if (!transitionLength || !videoLength) {
-      throw Error('Unable to calculate transition offset without length.');
+      throw new Error('Unable to calculate transition offset without length.');
     }
     if (transitionLength === '600/2400s') {
       return ((videoLength * 2400) - 600) + '/2400s';
@@ -535,100 +598,25 @@ module.exports = {
     else if (transitionLength === '1200/2400s') {
       return ((videoLength * 2400) - 1200) + '/2400s';
     }
-    throw Error('Unrecognized transition length entered.');
+    throw new Error('Unrecognized transition length entered.');
   },
+
   addAudioMetadata: function(inputText,outputFilename,outputVoice) {
     if (!inputText || !outputFilename || typeof inputText !== 'string' | typeof outputFilename !== 'string') {
-      throw Error('Invalid input text or output filename.');
+      throw new Error('Invalid input text or output filename.');
     }
     this.audioMetadata.push(
       {
         text: inputText,
-        filename: this.videoAssetsPath + outputFilename + '.aiff',
+        filename: this.projectPath + outputFilename + '.aiff',
         voice: outputVoice || 'karen'
       }
     );
   },
-  generateTitle: function(titlesPath) {
-    if (!titlesPath) {
-      throw Error('Unable to locate titles JSON data file.');
-    }
-    let data = {};
-    try {
-      data = JSON.parse(fs.readFileSync(titlesPath));
-    }
-    catch (error) {
-      console.log(error);
-      throw Error('Error parsing titles JSON data.');
-    }
-    let title = {};
-    title.raw = '';
-    title.singularKeywords = data.singularKeywords;
-    title.pluralKeywords = data.pluralKeywords;
-    let singularKeywords = false;
-    let singularPrefix = false;
-    let singularSuffix = false;
-    let pluralKeywords = false;
-    let pluralPrefix = false;
-    let pluralSuffix = false;
-    if (data.singularKeywords.length > 0 && data.pluralKeywords.length === 0) {
-      singularKeywords = true;
-    }
-    else if (data.singularKeywords.length > 0) {
-      singularKeywords = rand(true,false);
-    }
-    pluralKeywords = data.pluralKeywords.length > 0 && !singularKeywords;
-    if (singularKeywords && data.singularPrefix.length > 0 && (data.singularSuffix.length === 0 || data.requiresPrefix)) {
-      singularPrefix = true;
-    }
-    else if (singularKeywords && data.singularPrefix.length > 0) {
-      singularPrefix = rand(true,false);
-    }
-    if (singularKeywords && data.singularSuffix.length > 0 && (!singularPrefix || data.requiresSuffix)) {
-      singularSuffix = true;
-    }
-    if (pluralKeywords && data.pluralPrefix.length > 0 && (data.pluralSuffix.length === 0 || data.requiresPrefix)) {
-      pluralPrefix = true;
-    }
-    else if (pluralKeywords && data.pluralPrefix.length > 0) {
-      pluralPrefix = rand(true,false);
-    }
-    if (pluralKeywords && data.pluralSuffix.length > 0 && (!pluralPrefix || data.requiresSuffix)) {
-      pluralSuffix = true;
-    }
-    if (singularPrefix) {
-      title.raw += rand(...data.singularPrefix) + ' ';
-    }
-    if (pluralPrefix) {
-      title.raw += rand(...data.pluralPrefix) + ' ';
-    }
-    if (singularKeywords) {
-      title.raw += rand(...data.singularKeywords);
-    }
-    if (pluralKeywords) {
-      title.raw += rand(...data.pluralKeywords);
-    }
-    if (singularSuffix) {
-      title.raw += ' ' + rand(...data.singularSuffix);
-    }
-    if (pluralSuffix) {
-      title.raw += ' ' + rand(...data.pluralSuffix);
-    }
-    title.raw = title.raw.replace(/(?:^|\s)\S/g, word => word.toUpperCase());
-    if (title.raw.length < 30) {
-      title.short = title.raw;
-    }
-    else if (singularKeywords) {
-      title.short = rand(...data.singularKeywords).replace(/(?:^|\s)\S/g, word => word.toUpperCase());
-    }
-    else if (pluralKeywords) {
-      title.short = rand(...data.pluralKeywords).replace(/(?:^|\s)\S/g, word => word.toUpperCase());
-    }
-    return title;
-  },
+
   projectsXML: function(videoSlides) {
     if (!videoSlides || !videoSlides.length || !videoSlides[0].clips.length) {
-      throw Error('Unable to generate projects XML without video metadata.');
+      throw new Error('Unable to generate projects XML without video metadata.');
     }
     let xml = {
       projects: '',
@@ -636,52 +624,20 @@ module.exports = {
     };
     for (let p = 0; p < videoSlides.length; p++) {
       let projectXML = '';
-      let title = this.generateTitle(videoSlides[p].title);
-      let projectName = title.raw;
-      if (this.uploadMetadata[projectName]) {
+      if (this.uploadMetadata[videoSlides[p].title]) {
         continue;
       }
       projectXML +=
-      `<project name="${projectName}">
+      `<project name="${videoSlides[p].title}">
       <sequence duration="INSERT_PROJECT_DURATION_HERE" format="${this.projectFormatID}" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
       <spine>
       `;
       for (let s = 0; s < videoSlides[p].clips.length; s++) {
-        let videoText = '';
-        let audioText = '';
-        let videoImage = '';
         let videoDuration = 5;
-        if (videoSlides[p].clips[s].text && videoSlides[p].clips[s].text.length < 30) {
-          videoText = videoSlides[p].clips[s].text;
-        }
         if (videoSlides[p].clips[s].audio) {
-          audioText = videoSlides[p].clips[s].audio;
-          videoDuration = this.calculateVideoLengthFromText(audioText);
+          videoDuration = this.calculateVideoLengthFromText(videoSlides[p].clips[s].audio);
         }
-        if (videoSlides[p].clips[s].image) {
-          videoImage = videoSlides[p].clips[s].image;
-        }
-        let clip;
-        if (s === 0) {
-          clip = this.makeClip(videoImage,audioText,videoText,videoDuration,0);
-        }
-        else {
-          let randomVideoImage, randomAudioText, randomVideoText;
-          if (!videoImage) {
-            randomVideoText = videoText;
-          }
-          else {
-            randomVideoText = rand(videoText,'');
-          }
-          if (!randomVideoText) {
-            randomVideoImage = videoImage;
-          }
-          else {
-            randomVideoImage = rand(videoImage,'','');
-          }
-          randomAudioText = rand(audioText,'');
-          clip = this.makeClip(randomVideoImage,randomAudioText,randomVideoText,videoDuration,0);
-        }
+        let clip = this.makeClip(videoSlides[p].clips[s],videoDuration,0);
         xml.references += clip.xml;
         if (this.currentProjectDuration === 0) {
           let music = this.randomMusicTrack();
@@ -707,33 +663,22 @@ module.exports = {
       `;
       xml.projects += projectXML.replace(/INSERT_PROJECT_DURATION_HERE/g, this.currentProjectDuration + 's').replace(/\n\s*/g,'\n');
       this.currentProjectDuration = 0;
-      let rawKeywords = title.singularKeywords.concat(title.pluralKeywords);
-      let randomKeywords = [];
-      let keywordList = '';
-      for (let i = 0; i < rawKeywords.length; i++) {
-        let flip = rand(true,false);
-        if (flip) {
-          randomKeywords.push(rawKeywords[i]);
-        }
-      }
-      if (randomKeywords.length > 0) {
-        keywordList = randomKeywords.join(', ');
-      }
       let uploadObj = {
-        "file": this.videoAssetsPath + projectName + '.mp4',
-        "title": projectName,
+        "path": this.projectPath + videoSlides[p].title + '.mp4',
+        "title": videoSlides[p].title,
         "description": videoSlides[p].description,
-        "keywords": keywordList,
+        "keywords": videoSlides[p].keywords,
         "category": videoSlides[p].category,
         "privacy": videoSlides[p].privacy
       };
-      this.uploadMetadata[projectName] = uploadObj;
+      this.uploadMetadata[videoSlides[p].title] = uploadObj;
     }
     return xml;
   },
+
   xml: function(videoSlides,name) {
     if (!videoSlides || !videoSlides.length || !videoSlides[0].clips.length) {
-      throw Error('Unable to generate projects XML without video metadata.');
+      throw new Error('Unable to generate projects XML without video metadata.');
     }
     let file = '';
     let clips = this.projectsXML(videoSlides);
@@ -747,9 +692,10 @@ module.exports = {
     this.xmlFile = file;
     return file;
   },
+
   write: function(xmlFilename,audioMetadataFilename,uploadMetadataFilename) {
     if (!this.xmlFile || !this.audioMetadata || !this.uploadMetadata) {
-      throw Error('Unable to write to file without existing data.');
+      throw new Error('Unable to write to file without existing data.');
     }
     if (!xmlFilename || typeof xmlFilename !== 'string') {
       xmlFilename = 'projects.fcpxml';
@@ -761,15 +707,13 @@ module.exports = {
       uploadMetadataFilename = 'upload-metadata.json';
     }
     try {
-      fs.writeFileSync(this.videoAssetsPath + xmlFilename,this.xmlFile,'utf8');
-      fs.writeFileSync(this.videoAssetsPath + audioMetadataFilename,JSON.stringify(this.audioMetadata));
-      fs.writeFileSync(this.videoAssetsPath + uploadMetadataFilename,JSON.stringify(this.uploadMetadata));
+      fs.writeFileSync(this.projectPath + xmlFilename,this.xmlFile,'utf8');
+      fs.writeFileSync(this.projectPath + audioMetadataFilename,JSON.stringify(this.audioMetadata));
+      fs.writeFileSync(this.projectPath + uploadMetadataFilename,JSON.stringify(this.uploadMetadata));
     }
     catch (error) {
-      console.log(error);
-      return false;
+      throw error;
     }
-    return true;
   }
 
 };

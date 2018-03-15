@@ -90,11 +90,9 @@ describe('FCPXML', () => {
     expect(music.id).to.be.a('string');
   });
 
-  it('should be able to find video assets file path', () => {
+  it('should be able to find video project file path', () => {
     fcp.init();
-    let file = fs.readFileSync(fcp.videoAssetsPath+'test.txt','utf8').replace(/\n/g,'');
-    expect(file).to.be.a('string');
-    expect(file).to.equal('Test file.');
+    expect(fs.existsSync(fcp.projectPath)).to.equal(true);
   });
 
   it('static markup tags should return correct values', () => {
@@ -149,17 +147,17 @@ describe('FCPXML', () => {
     <format id="${fcp.audioFormatID}" name="FFVideoFormatRateUndefined"/>
     <effect id="${fcp.swapID}" name="Swap" uid="FxPlug:ED30AF7F-E5F2-4E1D-9ED8-74F6F055887F"/>
     <effect id="${fcp.swingID}" name="Swing" uid=".../Transitions.localized/Movements.localized/Swing.localized/Swing.motr"/>
-    <asset id="${fcp.music1}" name="Bright_Future" uid="D4B213A2F40498A916009A4E8667A3B7" src="${"file://" + fcp.videoAssetsPath + "Bright_Future.mp3"}" start="0s" duration="7717248/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${fcp.music2}" name="Bring_it_up" uid="96A15E699FA10811C40F093946DF3F52" src="${"file://" + fcp.videoAssetsPath + "Bring_it_up.mp3"}" start="0s" duration="7853184/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${fcp.music3}" name="Don_t_Look" uid="BD80E52FB35E00EBA743416B86CD602B" src="${"file://" + fcp.videoAssetsPath + "Don_t_Look.mp3"}" start="0s" duration="11718144/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${fcp.music4}" name="Hollywood_High" uid="50F80E752E96DABCDC93AA2759893FBA" src="${"file://" + fcp.videoAssetsPath + "Hollywood_High.mp3"}" start="0s" duration="8574336/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${fcp.music5}" name="I_Love_You" uid="D51891EBABC0F1891335E1DDF0E12312" src="${"file://" + fcp.videoAssetsPath + "I_Love_You.mp3"}" start="0s" duration="8756352/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${fcp.music6}" name="Over_Time" uid="540A25F6BF679E43DFFBA148EFFB5C2A" src="${"file://" + fcp.videoAssetsPath + "Over_Time.mp3"}" start="0s" duration="8021376/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${fcp.music7}" name="Reasons_to_Smile" uid="8810E3402684878ECE8B03C292F5A129" src="${"file://" + fcp.videoAssetsPath + "Reasons_to_Smile.mp3"}" start="0s" duration="8464896/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${fcp.music8}" name="Sunday_Plans" uid="D70E13F2EB1C1D25C5981C5ACC634156" src="${"file://" + fcp.videoAssetsPath + "Sunday_Plans.mp3"}" start="0s" duration="7498368/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${fcp.music9}" name="Undeniable" uid="64880D3F07110BD686ED7F8650283C9C" src="${"file://" + fcp.videoAssetsPath + "Undeniable.mp3"}" start="0s" duration="8777088/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${fcp.music10}" name="Venice_Beach" uid="C4DB24601F715BBCB1B98E8FEBBB99D9" src="${"file://" + fcp.videoAssetsPath + "Venice_Beach.mp3"}" start="0s" duration="7805952/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
-    <asset id="${fcp.music11}" name="Where_I_am_From" uid="085466F06BDA75E28D0F767E193E0FDE" src="${"file://" + fcp.videoAssetsPath + "Where_I_am_From.mp3"}" start="0s" duration="9489024/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${fcp.music1}" name="Bright_Future" uid="D4B213A2F40498A916009A4E8667A3B7" src="${"file://" + fcp.projectPath + "Bright_Future.mp3"}" start="0s" duration="7717248/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${fcp.music2}" name="Bring_it_up" uid="96A15E699FA10811C40F093946DF3F52" src="${"file://" + fcp.projectPath + "Bring_it_up.mp3"}" start="0s" duration="7853184/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${fcp.music3}" name="Don_t_Look" uid="BD80E52FB35E00EBA743416B86CD602B" src="${"file://" + fcp.projectPath + "Don_t_Look.mp3"}" start="0s" duration="11718144/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${fcp.music4}" name="Hollywood_High" uid="50F80E752E96DABCDC93AA2759893FBA" src="${"file://" + fcp.projectPath + "Hollywood_High.mp3"}" start="0s" duration="8574336/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${fcp.music5}" name="I_Love_You" uid="D51891EBABC0F1891335E1DDF0E12312" src="${"file://" + fcp.projectPath + "I_Love_You.mp3"}" start="0s" duration="8756352/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${fcp.music6}" name="Over_Time" uid="540A25F6BF679E43DFFBA148EFFB5C2A" src="${"file://" + fcp.projectPath + "Over_Time.mp3"}" start="0s" duration="8021376/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${fcp.music7}" name="Reasons_to_Smile" uid="8810E3402684878ECE8B03C292F5A129" src="${"file://" + fcp.projectPath + "Reasons_to_Smile.mp3"}" start="0s" duration="8464896/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${fcp.music8}" name="Sunday_Plans" uid="D70E13F2EB1C1D25C5981C5ACC634156" src="${"file://" + fcp.projectPath + "Sunday_Plans.mp3"}" start="0s" duration="7498368/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${fcp.music9}" name="Undeniable" uid="64880D3F07110BD686ED7F8650283C9C" src="${"file://" + fcp.projectPath + "Undeniable.mp3"}" start="0s" duration="8777088/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${fcp.music10}" name="Venice_Beach" uid="C4DB24601F715BBCB1B98E8FEBBB99D9" src="${"file://" + fcp.projectPath + "Venice_Beach.mp3"}" start="0s" duration="7805952/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
+    <asset id="${fcp.music11}" name="Where_I_am_From" uid="085466F06BDA75E28D0F767E193E0FDE" src="${"file://" + fcp.projectPath + "Where_I_am_From.mp3"}" start="0s" duration="9489024/44100s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100"/>
     `;
     expect(opening).to.equal(openingResult);
     expect(middle).to.equal(middleResult);
@@ -185,65 +183,43 @@ describe('FCPXML', () => {
     fcp.addAudioMetadata('This is a text sample.','output-file');
     expect(fcp.audioMetadata.length).to.equal(1);
     expect(fcp.audioMetadata[0].text).to.equal('This is a text sample.');
-    expect(fcp.audioMetadata[0].filename).to.equal(fcp.videoAssetsPath + 'output-file.aiff');
+    expect(fcp.audioMetadata[0].filename).to.equal(fcp.projectPath + 'output-file.aiff');
     expect(fcp.audioMetadata[0].voice).to.equal('karen');
-  });
-
-  it('titles should correctly generate title from given JSON data path', () => {
-    fcp.init();
-    let title;
-    title = fcp.generateTitle('test/titles-0.json');
-    expect(title).to.be.an('object');
-    expect(title).to.have.property('raw');
-    expect(title).to.have.property('short');
-    expect(title.raw).to.be.a('string');
-    expect(title.short).to.be.a('string');
-    expect(title.raw).to.equal('Singular Keyword');
-    expect(title.raw).to.equal(title.short);
-    title = fcp.generateTitle('test/titles-1.json');
-    expect(title.raw).to.equal('Singular Keyword With Suffix');
-    title = fcp.generateTitle('test/titles-2.json');
-    expect(title.raw).to.equal('Prefix And Singular Keyword');
-    title = fcp.generateTitle('test/titles-3.json');
-    expect(title.raw).to.equal('Plural Keyword');
-    title = fcp.generateTitle('test/titles-4.json');
-    expect(title.raw).to.equal('Plural Keyword With Suffix');
-    title = fcp.generateTitle('test/titles-5.json');
-    expect(title.raw).to.equal('Prefix And Plural Keyword');
   });
 
   it('make clip should return object with correct xml and reference', () => {
     let clip;
     fcp.init();
-    clip = fcp.makeClip('','','',5,0);
+    clip = fcp.makeClip({text: 'Test Title'},5,0);
     expect(clip).to.be.an('object');
     expect(clip).to.have.property('xml');
     expect(clip).to.have.property('reference');
     expect(clip.reference).to.equal('r28');
     expect(fcp.currentReferenceID).to.equal(29);
-    expect(()=>{fcp.makeClip('','','',5)}).to.throw();
+    expect(()=>{fcp.makeClip({},5)}).to.throw();
   });
 
   it('projects xml should return correct xml string', () => {
     fcp.init();
     let slides = [
       {
-        title: 'test/titles-0.json',
+        title: 'My video',
         description: 'A test description.',
-        category: 0,
-        privacy: 'Public',
+        category: '0',
+        privacy: 'public',
+        keywords: ['html','css','javascript'],
         clips: [
           {
             text: 'Some text...',
             audio: 'A sample voice over.',
-            image: 'src/image.jpg',
+            image: null,
             keyword: '',
             template: ''
           },
           {
             text: 'Some text...',
             audio: 'A sample voice over.',
-            image: 'src/image.jpg',
+            image: null,
             keyword: '',
             template: ''
           }
@@ -258,76 +234,26 @@ describe('FCPXML', () => {
   });
 
   it('xml should return correctly combine all xml components and write to file', () => {
-    fcp.init();
-    fcp.setVoice('ava');
+    fcp.init('assets/my-project/','','ava');
     let slides = [
       {
-        title: 'test/titles-0.json',
+        title: 'My video',
         description: 'A test description.',
-        category: 0,
-        privacy: 'Public',
+        category: '0',
+        privacy: 'public',
+        keywords: ['html','css','javascript'],
         clips: [
           {
             text: 'Some text...',
-            audio: 'Hello, here is some text for you to listen to',
-            image: '',
+            audio: 'Here is some text.',
+            image: null,
             keyword: '',
             template: ''
           },
           {
             text: 'Some more text...',
-            audio: 'This is another line of text for you to listen to',
-            image: 'sample-img.png',
-            keyword: '',
-            template: ''
-          },
-          {
-            text: 'A third line of text.',
-            audio: '',
-            image: '',
-            keyword: '',
-            template: ''
-          },
-          {
-            text: 'Want to see another line?',
-            audio: 'Want to see another line?',
-            image: '',
-            keyword: '',
-            template: ''
-          }
-        ]
-      },
-      {
-        title: 'test/titles-0.json',
-        description: 'A test description.',
-        category: 0,
-        privacy: 'Public',
-        clips: [
-          {
-            text: 'Some text...',
-            audio: 'Hello, here is some text for you to listen to',
-            image: '',
-            keyword: '',
-            template: ''
-          },
-          {
-            text: 'Some more text...',
-            audio: 'This is another line of text for you to listen to',
-            image: 'sample-img.png',
-            keyword: '',
-            template: ''
-          },
-          {
-            text: 'A third line of text.',
-            audio: '',
-            image: '',
-            keyword: '',
-            template: ''
-          },
-          {
-            text: 'Want to see another line?',
-            audio: 'Want to see another line?',
-            image: '',
+            audio: 'This is another line of text.',
+            image: null,
             keyword: '',
             template: ''
           }
@@ -338,7 +264,7 @@ describe('FCPXML', () => {
     expect(result).to.be.a('string');
     expect(fcp.xmlFile).to.equal(result);
     expect(()=>{fcp.xml()}).to.throw();
-    expect(fcp.write()).to.equal(true);
+    fcp.write();
   });
 
   it('set output voice should correctly set audio voice', ()=> {
