@@ -8,10 +8,11 @@ Generate XML, audio and upload metadata from a slides object and optional projec
 fcp.init();
 let slides = [
   {
-    title: 'titles.json',
+    title: 'My video',
     description: 'A test description.',
-    category: 0,
-    privacy: 'Public',
+    category: '22',
+    keywords: ['html','css','javascript'],
+    privacy: 'public',
     clips: [
       {
         text: 'Some text...',
@@ -23,8 +24,8 @@ let slides = [
       {
         text: 'Some more text...',
         audio: '',
-        image: 'sample-img.png',
-        keyword: '',
+        image: {filename: 'sample-img.png'},
+        keyword: 'dog',
         template: ''
       },
       {
