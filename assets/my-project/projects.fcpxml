@@ -40,18 +40,24 @@
 <audio offset="0s" ref="r29" duration="2s" role="dialogue.dialogue-1" srcCh="1"/>
 </clip>
 <spine lane="1" offset="3600s">
-<transition name="Rotate" offset="0s" duration="600/2400s">
-<filter-video ref="r9" name="Rotate"/>
+<transition name="Spin" offset="0s" duration="600/2400s">
+<filter-video ref="r12" name="Spin">
+<param name="Direction" key="1" value="0 (Automatic)"/>
+<param name="Angle" key="3" value="45"/>
+</filter-video>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
 <video name="image-r28" offset="0s" ref="r28" duration="2s" start="3600s">
 <adjust-crop mode="pan">
-<pan-rect top="7.29342" left="13.2237" bottom="7.70658" right="13.443"/>
+<pan-rect top="14.2553" left="1.75979" bottom="0.74466" right="24.9069"/>
 <pan-rect top="0" left="0" bottom="0" right="0"/>
 </adjust-crop>
 </video>
-<transition name="Scale" offset="4200/2400s" duration="600/2400s">
-<filter-video ref="r10" name="Scale"/>
+<transition name="Slide" offset="4200/2400s" duration="600/2400s">
+<filter-video ref="r11" name="Slide">
+<param name="Type" key="5" value="0 (Slide In)"/>
+<param name="Direction" key="4" value="2 (Right)"/>
+</filter-video>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
 </spine>
@@ -124,10 +130,12 @@
 <audio offset="0s" ref="r31" duration="3s" role="dialogue.dialogue-1" srcCh="1"/>
 </clip>
 <spine lane="1" offset="3600s">
-<transition name="Slide" offset="0s" duration="600/2400s">
-<filter-video ref="r11" name="Slide">
-<param name="Type" key="5" value="0 (Slide In)"/>
-<param name="Direction" key="4" value="2 (Right)"/>
+<transition name="Cross Dissolve" offset="0s" duration="600/2400s">
+<filter-video ref="r3" name="Cross Dissolve">
+<param name="Look" key="1" value="11 (Video)"/>
+<param name="Amount" key="2" value="50"/>
+<param name="Ease" key="50" value="2 (In &amp; Out)"/>
+<param name="Ease Amount" key="51" value="0"/>
 </filter-video>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
@@ -142,10 +150,10 @@
 <text-style font="Bodoni 72 Oldstyle" fontSize="150" fontFace="Book" fontColor="0 0 0 1" alignment="center"/>
 </text-style-def>
 </title>
-<transition name="Spin" offset="6600/2400s" duration="600/2400s">
-<filter-video ref="r12" name="Spin">
-<param name="Direction" key="1" value="0 (Automatic)"/>
-<param name="Angle" key="3" value="45"/>
+<transition name="Slide" offset="6600/2400s" duration="600/2400s">
+<filter-video ref="r11" name="Slide">
+<param name="Type" key="5" value="0 (Slide In)"/>
+<param name="Direction" key="4" value="2 (Right)"/>
 </filter-video>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
@@ -161,20 +169,21 @@
 <video name="Whites" offset="0s" ref="r2" duration="5s" start="3600s">
 <param name="Color" key="9999/10067/100/10068/2/100" value="5 (Bright White)"/>
 <spine lane="1" offset="3600s">
-<transition name="Scale" offset="0s" duration="600/2400s">
-<filter-video ref="r10" name="Scale"/>
+<transition name="Slide" offset="0s" duration="600/2400s">
+<filter-video ref="r11" name="Slide">
+<param name="Type" key="5" value="0 (Slide In)"/>
+<param name="Direction" key="4" value="2 (Right)"/>
+</filter-video>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
 <video name="image-r33" offset="0s" ref="r33" duration="5s" start="3600s">
 <adjust-crop mode="pan">
 <pan-rect top="0" left="0" bottom="0" right="0"/>
-<pan-rect top="0.62071" left="1.35298" bottom="14.3793" right="25.3137"/>
+<pan-rect top="7.29342" left="13.2237" bottom="7.70658" right="13.443"/>
 </adjust-crop>
 </video>
-<transition name="Swap" offset="11400/2400s" duration="600/2400s">
-<filter-video ref="r13" name="Swap">
-<param name="Direction" key="3" value="1 (Right)"/>
-</filter-video>
+<transition name="Drop In" offset="11400/2400s" duration="600/2400s">
+<filter-video ref="r7" name="Drop In"/>
 <filter-audio ref="r4" name="Audio Crossfade"/>
 </transition>
 </spine>
@@ -189,7 +198,7 @@
 <sequence duration="10s" format="r1" renderColorSpace="Rec. 709" tcStart="0s" audioLayout="stereo" audioRate="48k">
 <spine>
 <ref-clip name="clip-r30" offset="0s" ref="r30" duration="2s">
-<asset-clip name="Sunday_Plans" lane="-1" offset="0s" ref="r24" duration="10s" audioRole="music" format="r16">
+<asset-clip name="Don_t_Look" lane="-1" offset="0s" ref="r19" duration="10s" audioRole="music" format="r16">
 <adjust-volume amount="-12dB"/>
 </asset-clip>
 </ref-clip>

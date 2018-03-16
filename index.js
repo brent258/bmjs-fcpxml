@@ -717,13 +717,39 @@ module.exports = {
     }
   },
 
+  youtubeUploads: function(videos,apiParams) {
+    return new Promise((resolve,reject) => {
+      if (!videos || typeof videos !== 'object' || !apiParams || typeof apiParams !== 'object') {
+        reject('Unable to upload YouTube videos without video array and API parameters.');
+      }
+      else if (videos.length) {
+        youtube(videos[0],apiParams).then(msg => {
+          console.log(msg);
+          videos.shift();
+          this.youtubeUploads(videos,apiParams).then(data => resolve(data)).catch(err => reject(err));
+        }).catch(err => {
+          console.log(err);
+          videos.shift();
+          this.youtubeUploads(videos,apiParams).then(data => resolve(data)).catch(err => reject(err));
+        });
+      }
+      else {
+        resolve('Finished adding YouTube videos from upload list.');
+      }
+    });
+  },
+
   upload: function(metadata,apiParams) {
     if (!metadata || typeof metadata !== 'string' || !apiParams || typeof apiParams !== 'object') {
       throw new Error('Unable to upload videos without metadata and API parameters.');
     }
     let data = JSON.parse(fs.readFileSync(metadata));
+    let uploadQueue = [];
     for (let prop in data) {
-      youtube(data[prop],apiParams);
+      uploadQueue.push(data[prop]);
+    }
+    if (uploadQueue.length) {
+      this.youtubeUploads(uploadQueue,apiParams).then(msg => console.log(msg)).catch(err => console.log(err));
     }
   }
 
