@@ -1,5 +1,6 @@
 const rand = require('bmjs-random');
 const fs = require('fs');
+const youtube = require('./lib/youtube.js');
 
 module.exports = {
 
@@ -664,12 +665,12 @@ module.exports = {
       xml.projects += projectXML.replace(/INSERT_PROJECT_DURATION_HERE/g, this.currentProjectDuration + 's').replace(/\n\s*/g,'\n');
       this.currentProjectDuration = 0;
       let uploadObj = {
-        "path": this.projectPath + videoSlides[p].title + '.mp4',
-        "title": videoSlides[p].title,
-        "description": videoSlides[p].description,
-        "keywords": videoSlides[p].keywords,
-        "category": videoSlides[p].category,
-        "privacy": videoSlides[p].privacy
+        file: this.projectPath + videoSlides[p].title + '.mp4',
+        title: videoSlides[p].title,
+        description: videoSlides[p].description,
+        keywords: videoSlides[p].keywords,
+        category: videoSlides[p].category,
+        privacy: videoSlides[p].privacy
       };
       this.uploadMetadata[videoSlides[p].title] = uploadObj;
     }
@@ -713,6 +714,16 @@ module.exports = {
     }
     catch (error) {
       throw error;
+    }
+  },
+
+  upload: function(metadata,apiParams) {
+    if (!metadata || typeof metadata !== 'string' || !apiParams || typeof apiParams !== 'object') {
+      throw new Error('Unable to upload videos without metadata and API parameters.');
+    }
+    let data = JSON.parse(fs.readFileSync(metadata));
+    for (let prop in data) {
+      youtube(data[prop],apiParams);
     }
   }
 

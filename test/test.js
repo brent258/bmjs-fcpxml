@@ -206,7 +206,7 @@ describe('FCPXML', () => {
         title: 'My video',
         description: 'A test description.',
         category: '0',
-        privacy: 'public',
+        privacy: 'private',
         keywords: ['html','css','javascript'],
         clips: [
           {
@@ -234,13 +234,13 @@ describe('FCPXML', () => {
   });
 
   it('xml should return correctly combine all xml components and write to file', () => {
-    fcp.init('assets/my-project/','','ava');
+    fcp.init('/Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/my-project/','','ava');
     let slides = [
       {
         title: 'My video',
         description: 'A test description.',
         category: '0',
-        privacy: 'public',
+        privacy: 'private',
         keywords: ['html','css','javascript'],
         clips: [
           {
@@ -274,7 +274,7 @@ describe('FCPXML', () => {
     fcp.write();
   });
 
-  it('set output voice should correctly set audio voice', ()=> {
+  it('set output voice should correctly set audio voice', () => {
     fcp.init();
     expect(fcp.outputVoice).to.equal('karen');
     fcp.setVoice('ava');
