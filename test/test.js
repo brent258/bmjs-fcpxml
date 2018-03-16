@@ -239,7 +239,7 @@ describe('FCPXML', () => {
       {
         title: 'My video',
         description: 'A test description.',
-        category: '0',
+        category: '22',
         privacy: 'private',
         keywords: ['html','css','javascript'],
         clips: [
