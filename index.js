@@ -558,9 +558,9 @@ module.exports = {
       if (!clipObj.template.includes('noTransitionB') && !clipObj.template.includes('noTransitions')) clip.xml += this.randomVideoTransition(this.transitionDuration,transitionOffsetText);
     }
     else if (clipObj.text) {
-      clip.xml += this.randomTitleTransition(this.transitionDuration,videoOffsetText);
+      if (!clipObj.template.includes('noTransitionA') && !clipObj.template.includes('noTransitions')) clip.xml += this.randomTitleTransition(this.transitionDuration,videoOffsetText);
       clip.xml += this.FullTitle(clipObj.text,currentTitleReferenceText,videoDurationText,videoOffsetText);
-      clip.xml += this.randomTitleTransition(this.transitionDuration,transitionOffsetText);
+      if (!clipObj.template.includes('noTransitionB') && !clipObj.template.includes('noTransitions')) clip.xml += this.randomTitleTransition(this.transitionDuration,transitionOffsetText);
     }
     clip.xml +=
     `</spine>
