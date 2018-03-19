@@ -305,7 +305,7 @@ module.exports = {
   },
 
   FullTitle: function(text,currentTitleID,duration,offset) {
-    return `<title name="${text}" offset="${offset}" ref="${this.basicTitleID}" duration="${duration}" start="3600s">
+    return `<title name="${currentTitleID}" offset="${offset}" ref="${this.basicTitleID}" duration="${duration}" start="3600s">
     <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
     <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
     <param name="Alignment" key="9999/999166631/999166633/2/373" value="0 (Left) 1 (Middle)"/>
@@ -320,7 +320,7 @@ module.exports = {
   },
 
   LowerThirdTitle: function(text,currentTitleID,duration,offset) {
-    return `<title name="${text}" offset="${offset}" ref="${this.basicTitleID}" duration="${duration}" start="3600s">
+    return `<title name="${currentTitleID}" offset="${offset}" ref="${this.basicTitleID}" duration="${duration}" start="3600s">
     <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
     <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
     <param name="Alignment" key="9999/999166631/999166633/2/373" value="0 (Left) 1 (Middle)"/>
