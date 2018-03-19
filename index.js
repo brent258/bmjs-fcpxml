@@ -488,7 +488,7 @@ module.exports = {
       imageFile = 'image-' + currentImageReferenceText;
       audioFile = 'audio-' + currentAudioReferenceText;
       clipFile = 'clip-' + currentClipReferenceText;
-      imagePath = clipObj.keyword + '/' + clipObj.image.filename;
+      imagePath = clipObj.keyword.replace(/\s/g,'%20') + '/' + clipObj.image.filename;
       this.currentReferenceID += 3;
     }
     else if (clipObj.image) {
@@ -496,7 +496,7 @@ module.exports = {
       currentClipReferenceText = 'r' + (this.currentReferenceID + 1);
       imageFile = 'image-' + currentImageReferenceText;
       clipFile = 'clip-' + currentClipReferenceText;
-      imagePath = clipObj.keyword + '/' + clipObj.image.filename;
+      imagePath = clipObj.keyword.replace(/\s/g,'%20') + '/' + clipObj.image.filename;
       this.currentReferenceID += 2;
     }
     else if (clipObj.audio) {
