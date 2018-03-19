@@ -294,6 +294,16 @@ module.exports = {
     `;
   },
 
+  stillImage: function(imageName,imageID,duration,offset) {
+    return `<video name="${imageName}" offset="${offset}" ref="${imageID}" duration="${duration}" start="3600s">
+    <adjust-crop mode="pan">
+    <pan-rect top="0" left="0" bottom="0" right="0"/>
+    <pan-rect top="0" left="0" bottom="0" right="0"/>
+    </adjust-crop>
+    </video>
+    `;
+  },
+
   FullTitle: function(text,currentTitleID,duration,offset) {
     return `<title name="${text}" offset="${offset}" ref="${this.basicTitleID}" duration="${duration}" start="3600s">
     <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
@@ -538,9 +548,14 @@ module.exports = {
     `<spine lane="1" offset="3600s">
     `;
     if (clipObj.image) {
-      clip.xml += this.randomVideoTransition(this.transitionDuration,videoOffsetText);
-      clip.xml += this.randomImagePan(imageFile,currentImageReferenceText,videoDurationText,videoOffsetText);
-      clip.xml += this.randomVideoTransition(this.transitionDuration,transitionOffsetText);
+      if (!clipObj.template.includes('noTransitionA') && !clipObj.template.includes('noTransitions')) clip.xml += this.randomVideoTransition(this.transitionDuration,videoOffsetText);
+      if (!clipObj.template.includes('stillImage')) {
+        clip.xml += this.randomImagePan(imageFile,currentImageReferenceText,videoDurationText,videoOffsetText);
+      }
+      else {
+        clip.xml += this.stillImage(imageFile,currentImageReferenceText,videoDurationText,videoOffsetText);
+      }
+      if (!clipObj.template.includes('noTransitionB') && !clipObj.template.includes('noTransitions')) clip.xml += this.randomVideoTransition(this.transitionDuration,transitionOffsetText);
     }
     else if (clipObj.text) {
       clip.xml += this.randomTitleTransition(this.transitionDuration,videoOffsetText);

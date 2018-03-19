@@ -244,11 +244,11 @@ describe('FCPXML', () => {
         keywords: ['html','css','javascript'],
         clips: [
           {
-            text: 'Some text...',
-            audio: 'Here is some text.',
+            text: 'Some text stuff...',
+            audio: 'Here is some text stuff.',
             image: {filename: 'sample-img.png'},
             keyword: 'dog',
-            template: ''
+            template: 'noTransitionA'
           },
           {
             text: 'Some more text...',
@@ -262,7 +262,7 @@ describe('FCPXML', () => {
             audio: '',
             image: {filename: 'sample-img.png'},
             keyword: 'dog',
-            template: ''
+            template: 'stillImage'
           },
         ]
       }
