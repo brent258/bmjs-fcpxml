@@ -1,6 +1,6 @@
 {
   "name": "bmjs-fcpxml",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A utility for generating FCP XML files from predefined data.",
   "main": "index.js",
   "scripts": {

@@ -26,6 +26,7 @@ module.exports = {
     }
   ],
   outputVoice: 'karen',
+  outputExtension: 'm4v',
   projectFormatID: 'r1',
   whitesID: 'r2',
   crossDissolveID: 'r3',
@@ -62,7 +63,7 @@ module.exports = {
   currentTitleID: 1,
   currentProjectDuration: 0,
 
-  init: function(project,images,voice) {
+  init: function(project,images,voice,extension) {
     this.xmlFile = '';
     this.currentReferenceID = 28;
     this.currentTitleID = 1;
@@ -72,6 +73,7 @@ module.exports = {
     this.setVoice(voice);
     this.setProjectPath(project);
     this.setImagesPath(images);
+    this.setExtension(extension);
   },
 
   setProjectPath: function(path) {
@@ -98,6 +100,15 @@ module.exports = {
     }
     else {
       this.outputVoice = 'karen';
+    }
+  },
+
+  setExtension: function(extension) {
+    if (extension && typeof extension === 'string') {
+      this.outputExtension = extension;
+    }
+    else {
+      this.outputExtension = 'm4v';
     }
   },
 
@@ -390,17 +401,17 @@ module.exports = {
 
   randomMusicTrack: function() {
     return rand(
-      {name: "Bright_Future", id: "r17"},
-      {name: "Bring_It_Up", id: "r18"},
-      {name: "Don_t_Look", id: "r19"},
-      {name: "Hollywood_High", id: "r20"},
-      {name: "I_Love_You", id: "r21"},
-      {name: "Over_Time", id: "r22"},
-      {name: "Reasons_To_Smile", id: "r23"},
-      {name: "Sunday_Plans", id: "r24"},
-      {name: "Undeniable", id: "r25"},
-      {name: "Venice_Beach", id: "r26"},
-      {name: "Where_I_Am_From", id: "r27"}
+      {name: "Bright_Future", id: "r17", length: 175, duration: "7717248/44100s"},
+      {name: "Bring_It_Up", id: "r18", length: 178, duration: "7853184/44100s"},
+      {name: "Don_t_Look", id: "r19", length: 266, duration: "11718144/44100s"},
+      {name: "Hollywood_High", id: "r20", length: 194, duration: "8574336/44100s"},
+      {name: "I_Love_You", id: "r21", length: 198, duration: "8756352/44100s"},
+      {name: "Over_Time", id: "r22", length: 182, duration: "8021376/44100s"},
+      {name: "Reasons_To_Smile", id: "r23", length: 192, duration: "8464896/44100s"},
+      {name: "Sunday_Plans", id: "r24", length: 170, duration: "7498368/44100s"},
+      {name: "Undeniable", id: "r25", length: 199, duration: "8777088/44100s"},
+      {name: "Venice_Beach", id: "r26", length: 177, duration: "7805952/44100s"},
+      {name: "Where_I_Am_From", id: "r27", length: 215, duration: "9489024/44100s"}
     );
   },
 
@@ -597,11 +608,18 @@ module.exports = {
     if (!videoText || typeof videoText !== 'string') {
       throw new Error('Text must be entered to calculate video length');
     }
+    let length = 0;
     if (!videoText.includes(' ')) {
-      return 5;
+      length += 5;
     }
-    let words = videoText.split(' ').length;
-    return Math.floor(words / 3) + 1;
+    else {
+      let words = videoText.split(' ');
+      length += Math.floor(words.length / 3) + 1;
+      for (let i = 0; i < words.length; i++) {
+        if (words[i].match(/[\.\,\(\)\!\?]/g) || words[i] === '-') length += 1;
+      }
+    }
+    return length;
   },
 
   calculateTransitionStartFromLength: function(videoLength,transitionLength) {
@@ -630,6 +648,37 @@ module.exports = {
     );
   },
 
+  generateMusicXML: function(music,projectDuration) {
+    let xml = '';
+    if (projectDuration < music.length) {
+      xml += `<asset-clip name="${music.name}" lane="-1" offset="0s" ref="${music.id}" duration="${projectDuration}s" audioRole="music" format="${this.audioFormatID}">
+      <adjust-volume amount="-12dB"/>
+      </asset-clip>
+      `;
+    }
+    else {
+      let musicLength = 0;
+      while (musicLength < projectDuration) {
+        let musicDuration = '';
+        if (projectDuration > (musicLength + music.length)) {
+          musicDuration = music.duration;
+        }
+        else if (musicLength) {
+          musicDuration = (projectDuration - musicLength) + 's';
+        }
+        else {
+          musicDuration = projectDuration + 's';
+        }
+        musicLength += music.length;
+        xml += `<asset-clip name="${music.name}" lane="-1" offset="${musicLength}s" ref="${music.id}" duration="${musicDuration}" audioRole="music" format="${this.audioFormatID}">
+        <adjust-volume amount="-12dB"/>
+        </asset-clip>
+        `;
+      }
+    }
+    return xml;
+  },
+
   projectsXML: function(videoSlides) {
     if (!videoSlides || !videoSlides.length || !videoSlides[0].clips.length) {
       throw new Error('Unable to generate projects XML without video metadata.');
@@ -656,12 +705,9 @@ module.exports = {
         let clip = this.makeClip(videoSlides[p].clips[s],videoDuration,0);
         xml.references += clip.xml;
         if (this.currentProjectDuration === 0) {
-          let music = this.randomMusicTrack();
           projectXML +=
           `<ref-clip name="${'clip-' + clip.reference}" offset="${this.currentProjectDuration + 's'}" ref="${clip.reference}" duration="${videoDuration + 's'}">
-          <asset-clip name="${music.name}" lane="-1" offset="0s" ref="${music.id}" duration="INSERT_PROJECT_DURATION_HERE" audioRole="music" format="${this.audioFormatID}">
-          <adjust-volume amount="-12dB"/>
-          </asset-clip>
+          INSERT_MUSIC_XML
           </ref-clip>
           `;
         }
@@ -677,10 +723,11 @@ module.exports = {
       </sequence>
       </project>
       `;
-      xml.projects += projectXML.replace(/INSERT_PROJECT_DURATION_HERE/g, this.currentProjectDuration + 's').replace(/\n\s*/g,'\n');
+      let music = this.randomMusicTrack();
+      xml.projects += projectXML.replace(/INSERT_PROJECT_DURATION_HERE/g, this.currentProjectDuration + 's').replace(/INSERT_MUSIC_XML/g,this.generateMusicXML(music,this.currentProjectDuration)).replace(/\n\s*/g,'\n');
       this.currentProjectDuration = 0;
       let uploadObj = {
-        file: this.projectPath + videoSlides[p].title + '.mp4',
+        file: this.projectPath + videoSlides[p].title + '.' + this.outputExtension,
         title: videoSlides[p].title,
         description: videoSlides[p].description,
         keywords: videoSlides[p].keywords,

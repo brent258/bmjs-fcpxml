@@ -168,7 +168,7 @@ describe('FCPXML', () => {
   it('calculate video length should return correct length or default of 5', () => {
     fcp.init();
     expect(fcp.calculateVideoLengthFromText('sample')).to.equal(5);
-    expect(fcp.calculateVideoLengthFromText('sample line of text')).to.equal(2);
+    expect(fcp.calculateVideoLengthFromText('sample, line of - text')).to.equal(4);
   });
 
   it('calculate transition length should return correct offset string', () => {
@@ -190,7 +190,7 @@ describe('FCPXML', () => {
   it('make clip should return object with correct xml and reference', () => {
     let clip;
     fcp.init();
-    clip = fcp.makeClip({text: 'Test Title'},5,0);
+    clip = fcp.makeClip({text: 'Test Title', template: ''},5,0);
     expect(clip).to.be.an('object');
     expect(clip).to.have.property('xml');
     expect(clip).to.have.property('reference');
