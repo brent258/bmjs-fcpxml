@@ -649,33 +649,10 @@ module.exports = {
   },
 
   generateMusicXML: function(music,projectDuration) {
-    let xml = '';
-    if (projectDuration < music.length) {
-      xml += `<asset-clip name="${music.name}" lane="-1" offset="0s" ref="${music.id}" duration="${projectDuration}s" audioRole="music" format="${this.audioFormatID}">
-      <adjust-volume amount="-12dB"/>
-      </asset-clip>
-      `;
-    }
-    else {
-      let musicLength = 0;
-      while (musicLength < projectDuration) {
-        let musicDuration = '';
-        if (projectDuration > (musicLength + music.length)) {
-          musicDuration = music.duration;
-        }
-        else if (musicLength) {
-          musicDuration = (projectDuration - musicLength) + 's';
-        }
-        else {
-          musicDuration = projectDuration + 's';
-        }
-        musicLength += music.length;
-        xml += `<asset-clip name="${music.name}" lane="-1" offset="${musicLength}s" ref="${music.id}" duration="${musicDuration}" audioRole="music" format="${this.audioFormatID}">
-        <adjust-volume amount="-12dB"/>
-        </asset-clip>
-        `;
-      }
-    }
+    let xml = `<asset-clip name="${music.name}" lane="-1" offset="0s" ref="${music.id}" duration="${projectDuration}s" audioRole="music" format="${this.audioFormatID}">
+    <adjust-volume amount="-12dB"/>
+    </asset-clip>
+    `;
     return xml;
   },
 
