@@ -57,13 +57,14 @@ module.exports = {
   transitionDuration: '600/2400s',
   projectPath: '',
   imagesPath: '',
+  exportPath: '',
   startReferenceID: 28,
   currentReferenceID: 28,
   startTitleID: 1,
   currentTitleID: 1,
   currentProjectDuration: 0,
 
-  init: function(project,images,voice,extension) {
+  init: function(project,images,voice,extension,exportPath) {
     this.xmlFile = '';
     this.currentReferenceID = 28;
     this.currentTitleID = 1;
@@ -74,6 +75,7 @@ module.exports = {
     this.setProjectPath(project);
     this.setImagesPath(images);
     this.setExtension(extension);
+    this.setExportPath(exportPath);
   },
 
   setProjectPath: function(path) {
@@ -91,6 +93,15 @@ module.exports = {
     }
     else {
       this.imagesPath = __dirname + '/assets/';
+    }
+  },
+
+  setExportPath: function(path) {
+    if (path && typeof path === 'string') {
+      this.exportPath = path;
+    }
+    else {
+      this.exportPath = __dirname + '/assets/';
     }
   },
 
@@ -642,7 +653,7 @@ module.exports = {
     this.audioMetadata.push(
       {
         text: inputText,
-        filename: this.projectPath + outputFilename + '.aiff',
+        filename: this.exportPath + outputFilename + '.aiff',
         voice: outputVoice || 'karen'
       }
     );
@@ -747,9 +758,9 @@ module.exports = {
       uploadMetadataFilename = 'upload-metadata.json';
     }
     try {
-      fs.writeFileSync(this.projectPath + xmlFilename,this.xmlFile,'utf8');
-      fs.writeFileSync(this.projectPath + audioMetadataFilename,JSON.stringify(this.audioMetadata));
-      fs.writeFileSync(this.projectPath + uploadMetadataFilename,JSON.stringify(this.uploadMetadata));
+      fs.writeFileSync(this.exportPath + xmlFilename,this.xmlFile,'utf8');
+      fs.writeFileSync(this.exportPath + audioMetadataFilename,JSON.stringify(this.audioMetadata));
+      fs.writeFileSync(this.exportPath + uploadMetadataFilename,JSON.stringify(this.uploadMetadata));
     }
     catch (error) {
       throw error;

@@ -234,7 +234,7 @@ describe('FCPXML', () => {
   });
 
   it('xml should return correctly combine all xml components and write to file', () => {
-    fcp.init('/Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/my-project/','','ava');
+    fcp.init('/Volumes/Youtube/exports/batch1/','/Volumes/Youtube/app/cache/images/','ava','mp4','/Users/brentmccoy/Apps/node-modules/bmjs-fcpxml/assets/my-project/');
     let slides = [
       {
         title: 'My video',
